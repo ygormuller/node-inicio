@@ -2,28 +2,24 @@
   <a title="node.js authors / Public domain" href="https://commons.wikimedia.org/wiki/File:Node.js_logo.svg"><img width="175" alt="Node.js logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/512px-Node.js_logo.svg.png"></a>
 
 # node-inicio
-Desafio utilizando conceitos Node onde a aplicação armazenar repositórios, permite a criação, listagem, atualização e remoção dos repositórios e permite que os repositórios possam receber "likes".
+-**`Desafio utilizando conceitos Node`**
 
-### Rotas da aplicação
+- Aplicação permite que um repositório seja criado, e retorna um json com o projeto criado.
 
-Agora que você já está com o template clonado, e pronto para continuar, você deve abrir o arquivo app.js, e completar onde não possui código com o código para atingir os objetivos de cada rota.
+- Aplicação permite que seja retornado um array com todos os repositórios que foram criados até o momento.
 
-- **`POST /repositories`**: A rota deve receber `title`, `url` e `techs` dentro do corpo da requisição, sendo a URL o link para o github desse repositório. Ao cadastrar um novo projeto, ele deve ser armazenado dentro de um objeto no seguinte formato: `{ id: "uuid", title: 'Desafio Node.js', url: 'http://github.com/...', techs: ["Node.js", "..."], likes: 0 }`; Certifique-se que o ID seja um UUID, e de sempre iniciar os likes como 0.
+- Aplicação deve permitie que sejam alterados apenas os campos `url`, `title` e `techs`.
 
-- **`GET /repositories`**: Rota que lista todos os repositórios;
+- Validação na rota de update se o id do repositório enviado pela url existe ou não. Caso não exista, retorna um erro com status `400`.
 
-- **`PUT /repositories/:id`**: A rota deve alterar apenas o `title`, a `url` e as `techs` do repositório que possua o `id` igual ao `id` presente nos parâmetros da rota;
+- Não permite que a rota de update altere diretamente os likes desse repositório, mantendo o mesmo número de likes que o repositório já possuia antes da atualização. O único lugar atualiza essa informação é a rota responsável por aumentar o número de likes.
 
-- **`DELETE /repositories/:id`**: A rota deve deletar o repositório com o `id` presente nos parâmetros da rota;
+- Permitir que a rota de delete exclua um projeto, e ao fazer a exclusão, ele retorna uma resposta vazia, com status `204`.
 
-- **`POST /repositories/:id/like`**: A rota deve aumentar o número de likes do repositório específico escolhido através do `id` presente nos parâmetros da rota, a cada chamada dessa rota, o número de likes deve ser aumentado em 1;
+- Realiza validação na rota de delete se o id do repositório enviado pela url existe ou não. Caso não exista, retornar um erro com status `400`.
 
- - Repositories able to create a new repository
- - Repositories able to list the repositories
- - Repositories able to update repository
- - Repositories not able to update a repository that does not exist
- - Repositories not able to update repository likes manually
- - Repositories able to delete the repository
- - Repositories able to delete a repository that does not exist
+- A aplicação permite que um repositório com o id informado possa receber likes. O valor de likes é incrementado em 1 a cada requisição, e como resultado, retornar um json contendo o repositório com o número de likes atualizado.
+
+- Aplicação não permite likes em repositórios que não existem, para isso, ocorre validação na rota de like caso o id do repositório enviado pela url exista ou não. Caso não exista, retorna um erro com status `400`.
 
 
