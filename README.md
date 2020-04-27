@@ -22,4 +22,14 @@
 
 - Aplicação não permite likes em repositórios que não existem, para isso, ocorre validação na rota de like caso o id do repositório enviado pela url exista ou não. Caso não exista, retorna um erro com status `400`.
 
+**Instalar**
+
+- yarn init -y
+
+- yarn add express -D
+
+- yarn add nodemon -D 
+
+- yarn add uuidv4
+
 
